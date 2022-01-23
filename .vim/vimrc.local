@@ -51,4 +51,5 @@ nnoremap CM <Cmd>call FindPreviousPrompt()<CR>
 
 vnoremap acm <Cmd>call AllCommand()<CR>
 vmap cm acm
+vnoremap CM <Cmd>call FindPreviousPrompt()<CR>
 " vnoremap icm o<Cmd>call FindPreviousPrompt()<CR>o<Cmd>call FindNextPrompt()<CR>
