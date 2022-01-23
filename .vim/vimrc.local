@@ -1,6 +1,6 @@
 let g:terminal_command_motion_prompt_matcher = "^yogeshdhamija in"
 
-function! FindPreviousPrompt() abort
+function! PreviousPrompt() abort
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
 
@@ -17,7 +17,7 @@ function! FindPreviousPrompt() abort
     let &wrapscan = l:oldWrapscan
 endfunction
 
-function! FindNextPrompt() abort
+function! NextPrompt() abort
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
     let l:endOfFile = 0
@@ -45,10 +45,10 @@ function! SelectAllCommand() abort
     normal! o$o$
 
     normal! o
-    call FindPreviousPrompt()
+    call PreviousPrompt()
     normal! o
 
-    let l:endOfFile = FindNextPrompt()
+    let l:endOfFile = NextPrompt()
 
     " So the first character of the next prompt
     " is not included in the selection
@@ -57,10 +57,10 @@ function! SelectAllCommand() abort
     endif
 endfunction
 
-nnoremap cm <Cmd>call FindNextPrompt()<CR>
-nnoremap CM <Cmd>call FindPreviousPrompt()<CR>
+nnoremap cm <Cmd>call NextPrompt()<CR>
+nnoremap CM <Cmd>call PreviousPrompt()<CR>
 
-vnoremap cm <Cmd>call FindNextPrompt()<CR>
-vnoremap CM <Cmd>call FindPreviousPrompt()<CR>
+vnoremap cm <Cmd>call NextPrompt()<CR>
+vnoremap CM <Cmd>call PreviousPrompt()<CR>
 
 vnoremap acm <Cmd>call SelectAllCommand()<CR>
