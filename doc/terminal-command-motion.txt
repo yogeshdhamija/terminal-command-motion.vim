@@ -1,0 +1,38 @@
+*terminal-command-motion.txt*
+
+Author: Yogesh Dhamija <yogeshdhamija.github.io>
+
+`terminal-command-motion.vim` will add a new motion that can be used in a terminal buffer in 
+normal mode. Like `diw` operates on a word (the `w` in `diw` (Delete Inner Word)). In this case,
+the motion is `cm` (short for CoMmand). So, you can:
+
+- `yicm`: Yank Inner CoMmand
+- `2cm`: Move to the next 2 commands
+
+...etc.
+
+                                            *g:terminal_command_motion_prompt_matcher*
+Put this in your vimrc. It acts as the `/` command that will be used to find your terminal
+prompt, to differentiate each command from the next.
+Example:
+>
+    let g:terminal_command_motion_prompt_matcher = "^user in .* \%"
+<
+
+It uses standard vim regex, so you can use `\v` or \V` or `\c` or whatever.
+
+                                            *acm* *icm*
+These mappings can be used like:
+- `yicm`: Yank Inner CoMmand
+- `vacm`: Visual select All of a CoMmand
+
+        Key Mapping       Description     ~
+>
+        acm               A CoMmand (including the prompt)
+        icm               Inner CoMmand (either only the prompt, or only the command output)
+<
+
+                                            *cm* *CM*
+These mappings can be used like:
+- `<count>cm`: Move forward by that many commands
+- `<count>CM`: Move backward by that many commands

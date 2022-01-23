@@ -1,0 +1,5 @@
+g:terminal_command_motion_prompt_matcher	terminal-command-motion.txt	/*g:terminal_command_motion_prompt_matcher*
+acm	terminal-command-motion.txt	/*acm*
+icm	terminal-command-motion.txt	/*icm*
+cm	terminal-command-motion.txt	/*cm*
+CM	terminal-command-motion.txt	/*CM*
