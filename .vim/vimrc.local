@@ -8,9 +8,9 @@ function! FindPreviousPrompt() abort
     let @/ = g:terminal_command_motion_prompt_matcher
 
     let l:oldPosition = getpos(".")
-    silent! norm N
+    silent! normal! N
     if(getpos(".") == l:oldPosition)
-        silent! norm gg0
+        silent! normal! gg0
     endif
 
     let @/ = l:oldSearch
@@ -25,18 +25,30 @@ function! FindNextPrompt() abort
     let @/ = g:terminal_command_motion_prompt_matcher
 
     let l:oldPosition = getpos(".")
-    silent! norm n
+    silent! normal! n
     if(getpos(".") == l:oldPosition)
-        silent! norm G$
+        silent! normal! G$
     endif
 
     let @/ = l:oldSearch
     let &wrapscan = l:oldWrapscan
 endfunction
 
+function! AllCommand() abort
+    " In case you're at the beginning of a prompt already
+    " let's move you to the end of the line, so the previous prompt will
+    " be your current one, and we don't accidentally select
+    " the one before that
+    normal! o$
+
+    call FindPreviousPrompt()
+    normal! o
+    call FindNextPrompt()
+endfunction
+
 nnoremap cm <Cmd>call FindNextPrompt()<CR>
 nnoremap CM <Cmd>call FindPreviousPrompt()<CR>
 
-vnoremap acm o$<Cmd>call FindPreviousPrompt()<CR>o<Cmd>call FindNextPrompt()<CR>
+vnoremap acm <Cmd>call AllCommand()<CR>
 vmap cm acm
 " vnoremap icm o<Cmd>call FindPreviousPrompt()<CR>o<Cmd>call FindNextPrompt()<CR>
