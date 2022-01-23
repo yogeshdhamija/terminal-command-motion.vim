@@ -42,20 +42,26 @@ function! SelectAllCommand() abort
     " let's move you to the end of the line, so finding 
     " the previous prompt will result in your current one, and 
     " not the one before
-    normal! o$o$
+    silent! normal! o$o$
 
-    normal! o
+    silent! normal! o
     call PreviousPrompt()
-    normal! o
+    silent! normal! o
 
     let l:endOfFile = NextPrompt()
 
     " So the first character of the next prompt
     " is not included in the selection
     if(!l:endOfFile)
-        normal! k$
+        silent! normal! k$
     endif
 endfunction
+
+" function! SelectInnerCommand() abort
+"     SelectAllCommand()
+"     silent! normal! o
+"     silent! normal! o
+" endfunction
 
 nnoremap cm <Cmd>call NextPrompt()<CR>
 nnoremap CM <Cmd>call PreviousPrompt()<CR>
@@ -64,3 +70,4 @@ vnoremap cm <Cmd>call NextPrompt()<CR>
 vnoremap CM <Cmd>call PreviousPrompt()<CR>
 
 vnoremap acm <Cmd>call SelectAllCommand()<CR>
+" vnoremap icm <Cmd>call SelectInnerCommand()<CR>
