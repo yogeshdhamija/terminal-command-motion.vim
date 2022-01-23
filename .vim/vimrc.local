@@ -20,6 +20,7 @@ endfunction
 function! FindNextPrompt() abort
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
+    let l:endOfFile = 0
 
     set nowrapscan
     let @/ = g:terminal_command_motion_prompt_matcher
@@ -28,10 +29,12 @@ function! FindNextPrompt() abort
     silent! normal! n
     if(getpos(".") == l:oldPosition)
         silent! normal! G$
+        let l:endOfFile = 1
     endif
 
     let @/ = l:oldSearch
     let &wrapscan = l:oldWrapscan
+    return l:endOfFile
 endfunction
 
 function! SelectAllCommand() abort
@@ -39,19 +42,25 @@ function! SelectAllCommand() abort
     " let's move you to the end of the line, so finding 
     " the previous prompt will result in your current one, and 
     " not the one before
-    normal! $
+    normal! o$o$
 
     normal! o
     call FindPreviousPrompt()
     normal! o
-    call FindNextPrompt()
+
+    let l:endOfFile = FindNextPrompt()
+
+    " So the first character of the next prompt
+    " is not included in the selection
+    if(!l:endOfFile)
+        normal! k$
+    endif
 endfunction
 
 nnoremap cm <Cmd>call FindNextPrompt()<CR>
 nnoremap CM <Cmd>call FindPreviousPrompt()<CR>
 
-vnoremap acm <Cmd>call SelectAllCommand()<CR>
-
-vmap cm acm
+vnoremap cm <Cmd>call FindNextPrompt()<CR>
 vnoremap CM <Cmd>call FindPreviousPrompt()<CR>
-" vnoremap icm o<Cmd>call FindPreviousPrompt()<CR>o<Cmd>call FindNextPrompt()<CR>
+
+vnoremap acm <Cmd>call SelectAllCommand()<CR>
