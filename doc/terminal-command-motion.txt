@@ -2,6 +2,9 @@
 
 Author: Yogesh Dhamija <yogeshdhamija.github.io>
 
+TO IMPLEMENT:
+- Supporting <count>cm
+
 `terminal-command-motion.vim` will add a new motion that can be used in a terminal buffer in 
 normal mode. Like `diw` operates on a word (the `w` in `diw` (Delete Inner Word)). In this case,
 the motion is `cm` (short for CoMmand). So, you can:
