@@ -1,0 +1,42 @@
+let g:terminal_command_motion_prompt_matcher = "^yogeshdhamija in"
+
+function! FindPreviousPrompt() abort
+    let l:oldWrapscan = &wrapscan
+    let l:oldSearch = @/
+
+    set nowrapscan
+    let @/ = g:terminal_command_motion_prompt_matcher
+
+    let l:oldPosition = getpos(".")
+    silent! norm N
+    if(getpos(".") == l:oldPosition)
+        silent! norm gg0
+    endif
+
+    let @/ = l:oldSearch
+    let &wrapscan = l:oldWrapscan
+endfunction
+
+function! FindNextPrompt() abort
+    let l:oldWrapscan = &wrapscan
+    let l:oldSearch = @/
+
+    set nowrapscan
+    let @/ = g:terminal_command_motion_prompt_matcher
+
+    let l:oldPosition = getpos(".")
+    silent! norm n
+    if(getpos(".") == l:oldPosition)
+        silent! norm G$
+    endif
+
+    let @/ = l:oldSearch
+    let &wrapscan = l:oldWrapscan
+endfunction
+
+nnoremap cm <Cmd>call FindNextPrompt()<CR>
+nnoremap CM <Cmd>call FindPreviousPrompt()<CR>
+
+vnoremap acm o$<Cmd>call FindPreviousPrompt()<CR>o<Cmd>call FindNextPrompt()<CR>
+vmap cm acm
+" vnoremap icm o<Cmd>call FindPreviousPrompt()<CR>o<Cmd>call FindNextPrompt()<CR>
