@@ -7,6 +7,10 @@ function! s:configIsValid() abort
 endfunction
 
 function! terminalCommandMotion#PreviousPrompt() abort
+    if(!s:configIsValid())
+        return
+    endif
+
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
 
@@ -24,6 +28,10 @@ function! terminalCommandMotion#PreviousPrompt() abort
 endfunction
 
 function! terminalCommandMotion#NextPrompt() abort
+    if(!s:configIsValid())
+        return
+    endif
+
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
     let l:endOfFile = 0
@@ -44,6 +52,10 @@ function! terminalCommandMotion#NextPrompt() abort
 endfunction
 
 function! terminalCommandMotion#SelectAllCommand() abort
+    if(!s:configIsValid())
+        return
+    endif
+
     " In case you're at the beginning of a prompt already
     " let's move you to the end of the line, so finding 
     " the previous prompt will result in your current one, and 
@@ -63,13 +75,17 @@ function! terminalCommandMotion#SelectAllCommand() abort
     endif
 endfunction
 
-function! terminalCommandMotion#IsOnPrompt() abort
+function! s:isOnPrompt() abort
     let l:lineContents = getline('.')
     return match(l:lineContents, g:terminal_command_motion_prompt_matcher) != -1
 endfunction
 
 function! terminalCommandMotion#SelectInnerCommand() abort
-    if(IsOnPrompt())
+    if(!s:configIsValid())
+        return
+    endif
+
+    if(s:isOnPrompt())
         silent! normal! 0o$
     else
         call SelectAllCommand()
