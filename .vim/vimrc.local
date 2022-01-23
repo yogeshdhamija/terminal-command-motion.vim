@@ -34,11 +34,11 @@ function! FindNextPrompt() abort
     let &wrapscan = l:oldWrapscan
 endfunction
 
-function! AllCommand() abort
+function! SelectAllCommand() abort
     " In case you're at the beginning of a prompt already
-    " let's move you to the end of the line, so the previous prompt will
-    " be your current one, and we don't accidentally select
-    " the one before that
+    " let's move you to the end of the line, so finding 
+    " the previous prompt will result in your current one, and 
+    " not the one before
     normal! $
 
     normal! o
@@ -50,7 +50,7 @@ endfunction
 nnoremap cm <Cmd>call FindNextPrompt()<CR>
 nnoremap CM <Cmd>call FindPreviousPrompt()<CR>
 
-vnoremap acm <Cmd>call AllCommand()<CR>
+vnoremap acm <Cmd>call SelectAllCommand()<CR>
 
 vmap cm acm
 vnoremap CM <Cmd>call FindPreviousPrompt()<CR>
