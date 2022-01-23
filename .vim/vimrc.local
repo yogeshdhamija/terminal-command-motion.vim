@@ -85,3 +85,6 @@ vnoremap CM <Cmd>call PreviousPrompt()<CR>
 
 vnoremap acm <Cmd>call SelectAllCommand()<CR>
 vnoremap icm <Cmd>call SelectInnerCommand()<CR>
+
+omap acm :normal vacm<CR>
+omap icm :normal vicm<CR>
