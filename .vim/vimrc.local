@@ -39,8 +39,9 @@ function! AllCommand() abort
     " let's move you to the end of the line, so the previous prompt will
     " be your current one, and we don't accidentally select
     " the one before that
-    normal! o$
+    normal! $
 
+    normal! o
     call FindPreviousPrompt()
     normal! o
     call FindNextPrompt()
@@ -50,6 +51,7 @@ nnoremap cm <Cmd>call FindNextPrompt()<CR>
 nnoremap CM <Cmd>call FindPreviousPrompt()<CR>
 
 vnoremap acm <Cmd>call AllCommand()<CR>
+
 vmap cm acm
 vnoremap CM <Cmd>call FindPreviousPrompt()<CR>
 " vnoremap icm o<Cmd>call FindPreviousPrompt()<CR>o<Cmd>call FindNextPrompt()<CR>
