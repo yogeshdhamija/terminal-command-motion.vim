@@ -5,7 +5,7 @@
 ## To Install
 Using [vim-plug](https://github.com/junegunn/vim-plug):
 ```vim
-Plug 'neoclide/coc.nvim'
+Plug 'yogeshdhamija/terminal-command-motion.vim'
 ```
 
 Works in both [vim](https://www.vim.org/), and [neovim](https://neovim.io/).
