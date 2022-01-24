@@ -93,7 +93,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
         call terminalCommandMotion#SelectAllCommand()
         silent! normal! o
 
-        if(getpos('.')[1] != 1)
+        if(s:isOnPrompt())
             silent! normal! j
         endif
 
