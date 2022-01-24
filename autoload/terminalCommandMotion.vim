@@ -18,7 +18,7 @@ function! terminalCommandMotion#PreviousPrompt() abort
     let @/ = g:terminal_command_motion_prompt_matcher
 
     let l:oldPosition = getpos(".")
-    silent! normal! N
+    silent! execute 'normal! '.v:count1.'N'
     if(getpos(".") == l:oldPosition)
         silent! normal! gg0
     endif
@@ -40,7 +40,7 @@ function! terminalCommandMotion#NextPrompt() abort
     let @/ = g:terminal_command_motion_prompt_matcher
 
     let l:oldPosition = getpos(".")
-    silent! normal! n
+    silent! execute 'normal! '.v:count1.'n'
     if(getpos(".") == l:oldPosition)
         silent! normal! G$
         let l:endOfFile = 1
