@@ -12,5 +12,5 @@ vnoremap CM <Cmd>call terminalCommandMotion#PreviousPrompt()<CR>
 vnoremap acm <Cmd>call terminalCommandMotion#SelectAllCommand()<CR>
 vnoremap icm <Cmd>call terminalCommandMotion#SelectInnerCommand()<CR>
 
-omap acm :silent! normal vacm<CR>
-omap icm :silent! normal vicm<CR>
+omap acm <Cmd>silent! normal vacm<CR>
+omap icm <Cmd>silent! normal vicm<CR>
