@@ -8,6 +8,8 @@ Using [vim-plug](https://github.com/junegunn/vim-plug):
 Plug 'neoclide/coc.nvim'
 ```
 
+Works in both [vim](https://www.vim.org/), and [neovim](https://neovim.io/).
+
 ## Usage
 This plugin adds a "terminal command" motion to vim.
 
