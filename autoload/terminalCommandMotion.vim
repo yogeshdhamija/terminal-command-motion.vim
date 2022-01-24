@@ -88,7 +88,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
     if(s:isOnPrompt())
         silent! normal! 0o$
     else
-        call SelectAllCommand()
+        call terminalCommandMotion#SelectAllCommand()
         silent! normal! o
 
         if(getpos('.')[1] != 1)
