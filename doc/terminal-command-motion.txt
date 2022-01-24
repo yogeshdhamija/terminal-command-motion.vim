@@ -43,4 +43,4 @@ Example:
     let g:terminal_command_motion_prompt_matcher = "^john_doe in .* \%"
 <
 
-It uses standard vim regex, so you can use `\v` or \V` or `\c` or whatever.
+It uses standard vim regex, so you can use `\v` or `\V` or `\c` or whatever.
