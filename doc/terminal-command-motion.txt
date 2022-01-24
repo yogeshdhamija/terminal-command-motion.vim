@@ -2,24 +2,29 @@
 
 Author: Yogesh Dhamija <yogeshdhamija.github.io>
 
-                                            *acm* *icm*
 `terminal-command-motion.vim` will add a new motion that can be used in a terminal buffer in 
-normal mode. Like `diw` operates on a word (the `w` in `diw` (Delete Inner Word)). In this case,
-the motion is `cm` (short for CoMmand). So, you can:
+normal mode. The motion is `cm`, short for (C)o(m)mand. So, you can:
 
-- `yicm`: Yank Inner CoMmand
-- `2cm`: move to the next 2 CoMmands
+- `yicm`: (Y)ank (I)nner (C)o(m)mand
+- `2cm`: move forward (2) (C)o(m)mands
+- `5CM`: move backward (5) (C)o(m)mands
 
 ...etc.
 
+                                            *acm* *icm*
 These mappings can be used like:
-- `yicm`: Yank Inner CoMmand
-- `vacm`: Visual select All of a CoMmand
+- `yicm`: (Y)ank (I)nner (C)o(m)mand in a terminal buffer
+- `vacm`: (V)isual select (A)ll of a (C)o(m)mand in a terminal buffer
 
         Key Mapping       Description     ~
 >
-        acm               A CoMmand (including the prompt)
-        icm               Inner CoMmand (either only the prompt, or only the command output)
+        acm               (A)ll (C)o(m)mand 
+                                includes the prompt and the command output
+        icm               (I)nner (C)o(m)mand 
+                                if the cursor is on the line with the prompt,
+                                    includes only the prompt line
+                                otherwise,
+                                    includes only the command output
 <
 
                                             *cm* 
