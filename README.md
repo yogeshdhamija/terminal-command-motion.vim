@@ -1,5 +1,7 @@
 # terminal-command-motion.vim
 
+![gif](https://user-images.githubusercontent.com/4468354/150797271-0293d84c-a9e7-4c89-a3e8-4b0a4e68ecca.gif)
+
 ## To Install
 Using [vim-plug](https://github.com/junegunn/vim-plug):
 ```vim
