@@ -1,13 +1,15 @@
-function! s:configIsValid() abort
+function! s:situationIsValid() abort
     if(!exists("g:terminal_command_motion_prompt_matcher"))
         echom "Terminal Command Motion won't work without setting g:terminal_command_motion_prompt_matcher"
+        return 0
+    elseif(&buftype == 'terminal')
         return 0
     endif
     return 1
 endfunction
 
 function! terminalCommandMotion#PreviousPrompt() abort
-    if(!s:configIsValid())
+    if(!s:situationIsValid())
         return
     endif
 
@@ -28,7 +30,7 @@ function! terminalCommandMotion#PreviousPrompt() abort
 endfunction
 
 function! terminalCommandMotion#NextPrompt() abort
-    if(!s:configIsValid())
+    if(!s:situationIsValid())
         return
     endif
 
@@ -52,7 +54,7 @@ function! terminalCommandMotion#NextPrompt() abort
 endfunction
 
 function! terminalCommandMotion#SelectAllCommand() abort
-    if(!s:configIsValid())
+    if(!s:situationIsValid())
         return
     endif
 
@@ -81,7 +83,7 @@ function! s:isOnPrompt() abort
 endfunction
 
 function! terminalCommandMotion#SelectInnerCommand() abort
-    if(!s:configIsValid())
+    if(!s:situationIsValid())
         return
     endif
 
