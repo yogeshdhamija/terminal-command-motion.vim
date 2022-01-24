@@ -2,7 +2,7 @@ function! s:situationIsValid() abort
     if(!exists("g:terminal_command_motion_prompt_matcher"))
         echom "Terminal Command Motion won't work without setting g:terminal_command_motion_prompt_matcher"
         return 0
-    elseif(&buftype == 'terminal')
+    elseif(&buftype != 'terminal')
         return 0
     endif
     return 1
