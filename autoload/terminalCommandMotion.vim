@@ -63,10 +63,10 @@ function! terminalCommandMotion#SelectAllCommand() abort
     silent! normal! o$o$
 
     silent! normal! o
-    call PreviousPrompt()
+    call terminalCommandMotion#PreviousPrompt()
     silent! normal! o
 
-    let l:endOfFile = NextPrompt()
+    let l:endOfFile = terminalCommandMotion#NextPrompt()
 
     " So the first character of the next prompt
     " is not included in the selection
