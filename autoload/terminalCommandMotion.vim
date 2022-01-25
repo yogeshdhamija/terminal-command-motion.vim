@@ -3,6 +3,7 @@ function! s:configurationExists() abort
         echom "Terminal Command Motion won't work without setting g:terminal_command_motion_prompt_matcher"
         return 0
     endif
+    echo "GOOD"
     return 1
 endfunction
 
