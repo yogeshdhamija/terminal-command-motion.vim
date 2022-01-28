@@ -98,3 +98,16 @@ function! terminalCommandMotion#SelectInnerCommand() abort
         silent! normal! o
     endif
 endfunction
+
+function! terminalCommandMotion#AddMappings() abort
+    nnoremap <buffer> cm  <Cmd>call    terminalCommandMotion#NextPrompt()<CR>
+    nnoremap <buffer> CM  <Cmd>call    terminalCommandMotion#PreviousPrompt()<CR>
+    xnoremap <buffer> cm  <Cmd>call    terminalCommandMotion#NextPrompt()<CR>
+    xnoremap <buffer> CM  <Cmd>call    terminalCommandMotion#PreviousPrompt()<CR>
+
+    xnoremap <buffer> acm <Cmd>call    terminalCommandMotion#SelectAllCommand()<CR>
+    xnoremap <buffer> icm <Cmd>call    terminalCommandMotion#SelectInnerCommand()<CR>
+
+    omap     <buffer> acm <Cmd>silent! normal vacm<CR>
+    omap     <buffer> icm <Cmd>silent! normal vicm<CR>
+endfunction
