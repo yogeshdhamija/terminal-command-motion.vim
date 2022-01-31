@@ -76,8 +76,33 @@ function! terminalCommandMotion#SelectAllCommand() abort
 endfunction
 
 function! s:isOnPrompt() abort
-    let l:lineContents = getline('.')
-    return match(l:lineContents, g:terminal_command_motion_prompt_matcher) != -1
+    let l:oldWrapscan = &wrapscan
+    let l:oldSearch = @/
+    let l:oldPosition = getpos(".")
+
+    set nowrapscan
+    let @/ = g:terminal_command_motion_prompt_matcher
+
+    " In case you're at the beginning of a prompt already
+    " let's move you to the end of the line, so finding 
+    " the previous prompt will result in your current one, and 
+    " not the one before
+    silent! execute 'normal! <Esc>$N'
+    let l:promptStartPosition = getpos(".")
+    let l:promptEndLine = search(@/, 'cenW')
+
+    let l:isOnPrompt = 0
+    if(l:oldPosition[1] >= l:promptStartPosition[1] && l:oldPosition[1] <= l:promptEndLine)
+        let l:isOnPrompt = 1
+    endif
+
+    call setpos('.', l:oldPosition)
+    let @/ = l:oldSearch
+    let &wrapscan = l:oldWrapscan
+
+    silent! normal! gv
+
+    return l:isOnPrompt
 endfunction
 
 function! terminalCommandMotion#SelectInnerCommand() abort
