@@ -110,18 +110,32 @@ function! terminalCommandMotion#SelectInnerCommand() abort
         return
     endif
 
+    let l:oldWrapscan = &wrapscan
+    let l:oldSearch = @/
+    let l:oldPosition = getpos(".")
+
+    set nowrapscan
+    let @/ = g:terminal_command_motion_prompt_matcher
+
     if(s:isOnPrompt())
-        silent! normal! 0o$
+        silent! normal! $N
+        silent! normal! o
+        call search(@/, 'ceW')
+        silent! normal! $
     else
         call terminalCommandMotion#SelectAllCommand()
         silent! normal! o
 
         if(s:isOnPrompt())
+            call search(@/, 'ceW')
             silent! normal! j
         endif
 
         silent! normal! o
     endif
+
+    let @/ = l:oldSearch
+    let &wrapscan = l:oldWrapscan
 endfunction
 
 function! terminalCommandMotion#AddMappings() abort
