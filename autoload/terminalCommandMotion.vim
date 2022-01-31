@@ -119,7 +119,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
 
     if(s:isOnPrompt())
         silent! normal! $N
-        silent! normal! o
+        silent! normal! o0
         call search(@/, 'ceW')
         silent! normal! $
     else
