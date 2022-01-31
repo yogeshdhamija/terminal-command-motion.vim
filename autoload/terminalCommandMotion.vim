@@ -128,7 +128,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
 
         if(s:isOnPrompt())
             call search(@/, 'ceW')
-            silent! normal! j
+            silent! normal! j0
         endif
 
         silent! normal! o
