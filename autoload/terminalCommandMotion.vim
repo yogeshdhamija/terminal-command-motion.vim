@@ -87,7 +87,7 @@ function! s:isOnPrompt() abort
     " let's move you to the end of the line, so finding 
     " the previous prompt will result in your current one, and 
     " not the one before
-    silent! execute 'normal! <Esc>$N'
+    silent! execute 'normal! <Esc>0$N'
     " let l:promptStartPosition = getpos(".")
     " let l:promptEndLine = search(@/, 'cenW')
 
