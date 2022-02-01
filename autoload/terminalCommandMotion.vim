@@ -87,21 +87,18 @@ function! s:isOnPrompt() abort
     " let's move you to the end of the line, so finding 
     " the previous prompt will result in your current one, and 
     " not the one before
-    silent! execute 'normal! $'
     silent! normal $N
-    " let l:promptStartPosition = getpos(".")
-    " let l:promptEndLine = search(@/, 'cenW')
+    let l:promptStartPosition = getpos(".")
+    let l:promptEndLine = search(@/, 'cenW')
 
     let l:isOnPrompt = 0
-    " if(l:oldPosition[1] != 1 && l:oldPosition[1] >= l:promptStartPosition[1] && l:oldPosition[1] <= l:promptEndLine)
-    "     let l:isOnPrompt = 1
-    " endif
+    if(l:oldPosition[1] != 1 && l:oldPosition[1] >= l:promptStartPosition[1] && l:oldPosition[1] <= l:promptEndLine)
+        let l:isOnPrompt = 1
+    endif
 
-    " call setpos('.', l:oldPosition)
-    " let @/ = l:oldSearch
-    " let &wrapscan = l:oldWrapscan
-
-    " silent! normal! gv
+    call setpos('.', l:oldPosition)
+    let @/ = l:oldSearch
+    let &wrapscan = l:oldWrapscan
 
     return l:isOnPrompt
 endfunction
@@ -119,24 +116,24 @@ function! terminalCommandMotion#SelectInnerCommand() abort
     let @/ = g:terminal_command_motion_prompt_matcher
 
     if(s:isOnPrompt())
-        " silent! normal! $N
-        " silent! normal! o$N
-        " call search(@/, 'ceW')
-        " silent! normal! $
+        silent! normal! $N
+        silent! normal! o$N
+        call search(@/, 'ceW')
+        silent! normal! $
     else
-        " call terminalCommandMotion#SelectAllCommand()
-        " silent! normal! o
+        call terminalCommandMotion#SelectAllCommand()
+        silent! normal! o
 
-        " if(s:isOnPrompt())
-        "     call search(@/, 'ceW')
-        "     silent! normal! j0
-        " endif
+        if(s:isOnPrompt())
+            call search(@/, 'ceW')
+            silent! normal! j0
+        endif
 
-        " silent! normal! o
+        silent! normal! o
     endif
 
-    " let @/ = l:oldSearch
-    " let &wrapscan = l:oldWrapscan
+    let @/ = l:oldSearch
+    let &wrapscan = l:oldWrapscan
 endfunction
 
 function! terminalCommandMotion#AddMappings() abort
