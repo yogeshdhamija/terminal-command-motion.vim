@@ -122,6 +122,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
         silent! normal! o$N
         call search(@/, 'ceW')
         silent! normal! $
+        echo "1"
     else
         call terminalCommandMotion#SelectAllCommand()
         silent! normal! o
@@ -132,6 +133,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
         endif
 
         silent! normal! o
+        echo "2"
     endif
 
     let @/ = l:oldSearch
