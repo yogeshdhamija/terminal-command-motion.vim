@@ -11,6 +11,14 @@ normal mode. The motion is `cm`, short for (C)o(m)mand. So, you can:
 
 ...etc.
 
+                                            *cm* 
+`<count>cm`: Move forward by that many terminal commands
+in a terminal buffer.
+
+                                            *CM* 
+`<count>CM`: Move backward by that many terminal commands
+in a terminal buffer.
+
                                             *acm* *icm* *aCM* *iCM*
 These mappings can be used like:
 - `yicm`: (Y)ank (I)nner (C)o(m)mand in a terminal buffer
@@ -29,20 +37,16 @@ These mappings can be used like:
         iCM               Same as icm
 <
 
-                                            *cm* 
-`<count>cm`: Move forward by that many terminal commands
-in a terminal buffer
-
-                                            *CM* 
-`<count>CM`: Move backward by that many terminal commands
-in a terminal buffer
-
                                             *g:terminal_command_motion_prompt_matcher*
 Put this in your vimrc. It acts as the `/` command that will be used to find your terminal
 prompt, to differentiate each command from the next.
 Example:
 >
-    let g:terminal_command_motion_prompt_matcher = '^'.$USER.' in .* \%'
+    let g:terminal_command_motion_prompt_matcher = '^'.$USER.' in .* \%\s*'
 <
-
 It uses standard vim regex, so you can use `\v` or `\V` or `\c` or whatever.
+
+Important note: please make sure the regex matches your entire terminal prompt, not
+just the beginning, or some subset of it. This is because the `CM` and 'cm' motions behave
+differently if your cursor is in the prompt vs. if it's on the same line but before
+or after the prompt.
