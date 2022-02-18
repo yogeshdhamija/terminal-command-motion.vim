@@ -169,14 +169,20 @@ function! terminalCommandMotion#SelectInnerCommand() abort
 endfunction
 
 function! terminalCommandMotion#AddMappings() abort
-    nnoremap <buffer> cm  <Cmd>call    terminalCommandMotion#NextPrompt()<CR>
-    nnoremap <buffer> CM  <Cmd>call    terminalCommandMotion#PreviousPrompt()<CR>
-    xnoremap <buffer> cm  <Cmd>call    terminalCommandMotion#NextPrompt()<CR>
-    xnoremap <buffer> CM  <Cmd>call    terminalCommandMotion#PreviousPrompt()<CR>
+    nnoremap <buffer> cm  <Cmd>call terminalCommandMotion#NextPrompt()<CR>
+    nnoremap <buffer> CM  <Cmd>call terminalCommandMotion#PreviousPrompt()<CR>
 
-    xnoremap <buffer> acm <Cmd>call    terminalCommandMotion#SelectAllCommand()<CR>
-    xnoremap <buffer> icm <Cmd>call    terminalCommandMotion#SelectInnerCommand()<CR>
+    xnoremap <buffer> cm  <Cmd>call terminalCommandMotion#NextPrompt()<CR>
+    xnoremap <buffer> CM  <Cmd>call terminalCommandMotion#PreviousPrompt()<CR>
+    xnoremap <buffer> acm <Cmd>call terminalCommandMotion#SelectAllCommand()<CR>
+    xnoremap <buffer> icm <Cmd>call terminalCommandMotion#SelectInnerCommand()<CR>
+    xmap     <buffer> aCM <Cmd>silent! normal acm<CR>
+    xmap     <buffer> iCM <Cmd>silent! normal icm<CR>
 
+    omap     <buffer> cm  <Cmd>silent! normal vcm<CR>
+    omap     <buffer> CM  <Cmd>silent! normal vCM<CR>
     omap     <buffer> acm <Cmd>silent! normal vacm<CR>
     omap     <buffer> icm <Cmd>silent! normal vicm<CR>
+    omap     <buffer> aCM <Cmd>silent! normal vaCM<CR>
+    omap     <buffer> iCM <Cmd>silent! normal viCM<CR>
 endfunction
