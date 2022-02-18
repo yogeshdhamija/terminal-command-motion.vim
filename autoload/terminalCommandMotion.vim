@@ -75,7 +75,7 @@ function! terminalCommandMotion#SelectAllCommand() abort
     endif
 endfunction
 
-function! s:isOnPrompt() abort
+function! s:isOnPromptLine() abort
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
     let l:oldPosition = getcurpos()
@@ -115,7 +115,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
     set nowrapscan
     let @/ = g:terminal_command_motion_prompt_matcher
 
-    if(s:isOnPrompt())
+    if(s:isOnPromptLine())
         silent! normal! $N
         silent! normal! o$N
         call search(@/, 'ceW')
@@ -124,7 +124,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
         call terminalCommandMotion#SelectAllCommand()
         silent! normal! o
 
-        if(s:isOnPrompt())
+        if(s:isOnPromptLine())
             call search(@/, 'ceW')
             silent! normal! j0
         endif
