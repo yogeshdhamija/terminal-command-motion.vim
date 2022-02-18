@@ -47,6 +47,6 @@ Example:
 It uses standard vim regex, so you can use `\v` or `\V` or `\c` or whatever.
 
 Important note: please make sure the regex matches your entire terminal prompt, not
-just the beginning, or some subset of it. This is because the `CM` and 'cm' motions behave
+just the beginning, or some subset of it. This is because the `CM` and `cm` motions behave
 differently if your cursor is in the prompt vs. if it's on the same line but before
 or after the prompt.
