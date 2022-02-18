@@ -87,15 +87,14 @@ function! s:isInPrompt() abort
     let [l:promptStart_line, l:promptStart_column] = searchpos(g:terminal_command_motion_prompt_matcher, "bcW")
     let [l:promptEnd_line, l:promptEnd_column] = searchpos(g:terminal_command_motion_prompt_matcher, "ceW")
 
-    let l:isInPrompt = 1
-    if(
-        \ l:cursor_line < l:promptStart_line ||
-        \ l:cursor_line > l:promptEnd_line ||
-        \ (l:cursor_line == l:promptStart_line && l:cursor_column < l:promptStart_column) ||
-        \ (l:cursor_line == l:promptEnd_line && l:cursor_column > l:promptEnd_column)
+    let l:isInPrompt = (
+        \ l:cursor_line >= l:promptStart_line &&
+        \ l:cursor_line <= l:promptEnd_line &&
+        \ (l:cursor_line > l:promptStart_line || l:cursor_column >= l:promptStart_column) &&
+        \ (l:cursor_line < l:promptEnd_line || l:cursor_column <= l:promptEnd_column)
     \ )
-        let l:isInPrompt = 0
-    endif
+
+    echomsg l:isInPrompt
 
     call setpos('.', l:cursorPosition)
     let @/ = l:oldSearch
