@@ -6,7 +6,8 @@ function! s:configurationExists() abort
     return 1
 endfunction
 
-function! terminalCommandMotion#PreviousPrompt() abort
+function! terminalCommandMotion#PreviousPrompt(...) abort
+    let l:shouldIncludeCurrentPrompt = get(a:, 1, 0)
     if(!s:configurationExists())
         return
     endif
@@ -18,6 +19,11 @@ function! terminalCommandMotion#PreviousPrompt() abort
     let @/ = g:terminal_command_motion_prompt_matcher
 
     let l:oldPosition = getcurpos()
+
+    if(!l:shouldIncludeCurrentPrompt && s:isInPrompt())
+        call searchpos(g:terminal_command_motion_prompt_matcher, "bcW")
+    endif
+
     silent! execute 'normal! '.v:count1.'N'
     if(getcurpos() == l:oldPosition)
         silent! normal! gg0
@@ -63,7 +69,7 @@ function! terminalCommandMotion#SelectAllCommand() abort
     silent! normal! o$o$
 
     silent! normal! o
-    call terminalCommandMotion#PreviousPrompt()
+    call terminalCommandMotion#PreviousPrompt(1)
     silent! normal! o
 
     let l:endOfFile = terminalCommandMotion#NextPrompt()
