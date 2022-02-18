@@ -94,8 +94,6 @@ function! s:isInPrompt() abort
         \ (l:cursor_line < l:promptEnd_line || l:cursor_column <= l:promptEnd_column)
     \ )
 
-    echomsg l:isInPrompt
-
     call setpos('.', l:cursorPosition)
     let @/ = l:oldSearch
     let &wrapscan = l:oldWrapscan
