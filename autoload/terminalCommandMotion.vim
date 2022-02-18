@@ -17,9 +17,9 @@ function! terminalCommandMotion#PreviousPrompt() abort
     set nowrapscan
     let @/ = g:terminal_command_motion_prompt_matcher
 
-    let l:oldPosition = getpos(".")
+    let l:oldPosition = getcurpos()
     silent! execute 'normal! '.v:count1.'N'
-    if(getpos(".") == l:oldPosition)
+    if(getcurpos() == l:oldPosition)
         silent! normal! gg0
     endif
 
@@ -39,9 +39,9 @@ function! terminalCommandMotion#NextPrompt() abort
     set nowrapscan
     let @/ = g:terminal_command_motion_prompt_matcher
 
-    let l:oldPosition = getpos(".")
+    let l:oldPosition = getcurpos()
     silent! execute 'normal! '.v:count1.'n'
-    if(getpos(".") == l:oldPosition)
+    if(getcurpos() == l:oldPosition)
         silent! normal! G$
         let l:endOfFile = 1
     endif
@@ -78,7 +78,7 @@ endfunction
 function! s:isOnPrompt() abort
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
-    let l:oldPosition = getpos(".")
+    let l:oldPosition = getcurpos()
 
     set nowrapscan
     let @/ = g:terminal_command_motion_prompt_matcher
@@ -88,7 +88,7 @@ function! s:isOnPrompt() abort
     " the previous prompt will result in your current one, and 
     " not the one before
     silent! normal $N
-    let l:promptStartPosition = getpos(".")
+    let l:promptStartPosition = getcurpos()
     let l:promptEndLine = search(@/, 'cenW')
 
     let l:isOnPrompt = 0
@@ -110,7 +110,7 @@ function! terminalCommandMotion#SelectInnerCommand() abort
 
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
-    let l:oldPosition = getpos(".")
+    let l:oldPosition = getcurpos()
 
     set nowrapscan
     let @/ = g:terminal_command_motion_prompt_matcher
