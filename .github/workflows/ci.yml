@@ -15,6 +15,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Environment Information
+        run: |
+          pwd
+          vim --version
 
       - name: Test
-        run: pwd && ./test.sh
+        run: ./test.sh
