@@ -169,7 +169,6 @@ function! terminalCommandMotion#SelectInnerCommand() abort
 endfunction
 
 function! terminalCommandMotion#AddMappings() abort
-    echomsg "MAPPINGS LOADED"
     nnoremap <buffer> cm  <Cmd>call terminalCommandMotion#NextPrompt()<CR>
     nnoremap <buffer> CM  <Cmd>call terminalCommandMotion#PreviousPrompt()<CR>
 
@@ -187,4 +186,3 @@ function! terminalCommandMotion#AddMappings() abort
     omap     <buffer> aCM <Cmd>silent! normal vaCM<CR>
     omap     <buffer> iCM <Cmd>silent! normal viCM<CR>
 endfunction
-
