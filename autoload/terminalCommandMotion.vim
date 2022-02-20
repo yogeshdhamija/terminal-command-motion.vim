@@ -34,11 +34,9 @@ function! terminalCommandMotion#PreviousPrompt(...) abort
 endfunction
 
 function! terminalCommandMotion#NextPrompt() abort
-    echomsg "NEXT PROMPT ENGAGED"
     if(!s:configurationExists())
         return
     endif
-    echomsg "NEXT PROMPT ENGAGED"
 
     let l:oldWrapscan = &wrapscan
     let l:oldSearch = @/
