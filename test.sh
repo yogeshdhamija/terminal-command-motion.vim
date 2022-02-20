@@ -6,10 +6,10 @@ run_test() {
     vim \
         -Nu ./.vim/vimrc.local \
         -c '' \
-        -s ./test/${test_folder}/when.vim \
-        ./test/${test_folder}/given.txt
+        -s ./${test_folder}/when.vim \
+        ./${test_folder}/given.txt
 
-    if cmp --silent -- ./test/${test_folder}/expected.txt ./test/${test_folder}/actual.txt; then
+    if cmp --silent -- ./${test_folder}/expected.txt ./${test_folder}/actual.txt; then
         echo "PASS"
         return 0
     else
@@ -18,4 +18,4 @@ run_test() {
     fi
 }
 
-run_test "cm" || exit 1
+run_test test/* || exit 1
