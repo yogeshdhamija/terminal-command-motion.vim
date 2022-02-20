@@ -17,6 +17,14 @@ for test_folder in test/*; do
         echo -e "${GREEN}${test_folder}: PASS${NO_COLOR}"
     else
         echo -e "${RED}${test_folder}: FAIL${NO_COLOR}"
+        echo ""
+        echo "EXPECTED:"
+        cat ./${test_folder}/expected.txt
+        echo "ACTUAL:"
+        cat ./${test_folder}/actual.txt
+        echo ""
+        echo ""
+
         any_failed=1
     fi
 done;
