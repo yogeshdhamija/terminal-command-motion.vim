@@ -16,10 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Install Neovim
+        run: apt install neovim
+      
       - name: Environment Information
         run: |
           pwd
+          ls
           vim --version
+          nvim --version
 
       - name: Test
         run: ./test.sh
