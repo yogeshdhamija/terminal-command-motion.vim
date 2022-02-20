@@ -1,8 +1,7 @@
 #!/bin/bash
 
-run_test() {
-    local test_folder=$1
 
+for test_folder in test/*; do
     vim \
         -Nu ./.vim/vimrc.local \
         -c '' \
@@ -10,12 +9,8 @@ run_test() {
         ./${test_folder}/given.txt
 
     if cmp --silent -- ./${test_folder}/expected.txt ./${test_folder}/actual.txt; then
-        echo "PASS"
-        return 0
+        echo "${test_folder}: PASS"
     else
-        echo "FAIL"
-        return 1
+        echo "${test_folder}: FAIL"
     fi
-}
-
-run_test test/* || exit 1
+done;
