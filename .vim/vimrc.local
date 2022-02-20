@@ -1,3 +1,2 @@
-echomsg "SOURCED!"
 source autoload/terminalCommandMotion.vim | source plugin/terminal-command-motion.vim
 autocmd BufWritePost * source autoload/terminalCommandMotion.vim | source plugin/terminal-command-motion.vim
