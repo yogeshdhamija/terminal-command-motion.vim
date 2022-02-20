@@ -7,23 +7,29 @@ GREEN='\033[0;32m'
 NO_COLOR='\033[0m'
 
 for test_folder in test/*; do
-    vim --not-a-term -Nu ./.vim/vimrc.local -c '' -s ./${test_folder}/when.vim ./${test_folder}/given.txt > /dev/null
+    programs=( 'vim --not-a-term -N' 'nvim -es' )
 
-    if cmp --silent -- ./${test_folder}/expected.txt ./${test_folder}/actual.txt; then
-        echo -e "${GREEN}${test_folder}: PASS${NO_COLOR}"
-    else
-        echo -e "${RED}${test_folder}: FAIL${NO_COLOR}"
-        echo ""
-        echo "EXPECTED:"
-        cat ./${test_folder}/expected.txt
-        echo ""
-        echo "ACTUAL:"
-        cat ./${test_folder}/actual.txt
-        echo ""
-        echo ""
+    for program in "${programs[@]}"; do
+        ${program} -u ./.vim/vimrc.local -c '' -s ./${test_folder}/when.vim ./${test_folder}/given.txt > /dev/null
 
-        any_failed=1
-    fi
+        program_name=$(echo "${program}" | awk '{print $1}')
+
+        if cmp --silent -- ./${test_folder}/expected.txt ./${test_folder}/actual.txt; then
+            echo -e "${GREEN}${test_folder} ${program_name} PASS${NO_COLOR}"
+        else
+            echo -e "${RED}${test_folder} ${program_name} FAIL${NO_COLOR}"
+            echo ""
+            echo "EXPECTED:"
+            cat ./${test_folder}/expected.txt
+            echo ""
+            echo "ACTUAL:"
+            cat ./${test_folder}/actual.txt
+            echo ""
+            echo ""
+
+            any_failed=1
+        fi
+    done;
 done;
 
 if [ ${any_failed} -eq 1 ]; then 
