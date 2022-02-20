@@ -186,3 +186,5 @@ function! terminalCommandMotion#AddMappings() abort
     omap     <buffer> aCM <Cmd>silent! normal vaCM<CR>
     omap     <buffer> iCM <Cmd>silent! normal viCM<CR>
 endfunction
+
+echomsg "SOURCED AND LOADED"
