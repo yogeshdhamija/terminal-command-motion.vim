@@ -20,6 +20,7 @@ for test_folder in test/*; do
         echo ""
         echo "EXPECTED:"
         cat ./${test_folder}/expected.txt
+        echo ""
         echo "ACTUAL:"
         cat ./${test_folder}/actual.txt
         echo ""
