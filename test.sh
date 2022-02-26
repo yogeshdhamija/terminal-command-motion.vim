@@ -10,7 +10,7 @@ for test_folder in test/*; do
     programs=( 'vim --not-a-term -N' 'nvim -es --headless' )
 
     for program in "${programs[@]}"; do
-        ${program} -u ./.vim/vimrc.local -c '' -s ./${test_folder}/when.vim ./${test_folder}/given.txt 
+        ${program} -u ./.vim/vimrc.local -c '' -s ./${test_folder}/when.vim ./${test_folder}/given.txt > /dev/null
 
         program_name=$(echo "${program}" | awk '{print $1}')
 
