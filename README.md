@@ -18,3 +18,14 @@ This plugin adds a "terminal command" motion to vim.
 ...and associated commands like `3cm`, `2CM`, `yicm`, etc.
 
 See `:h terminal-command-motion.txt` for details (or check the `/doc` folder).
+
+## To Test
+Locally, run:
+```
+./test.sh
+```
+
+To run in docker:
+```
+docker build . -t testing_terminal-command-motion.vim && docker run testing_terminal-command-motion.vim
+```
