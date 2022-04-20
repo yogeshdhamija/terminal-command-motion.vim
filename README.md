@@ -24,8 +24,7 @@ Locally, run:
 ```
 ./test.sh
 ```
-
-To run in docker:
+In docker, run:
 ```
 docker build . -t testing_terminal-command-motion.vim && docker run testing_terminal-command-motion.vim
 ```

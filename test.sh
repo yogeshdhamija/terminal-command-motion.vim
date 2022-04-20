@@ -7,9 +7,6 @@ GREEN='\033[0;32m'
 NO_COLOR='\033[0m'
 
 for test_folder in test/*; do
-# for test_folder in test/*backwards; do
-    # programs=( 'nvim -nN --headless' )   # Works totally
-    # programs=( 'vim -nN --not-a-term' )   # Works locally
     programs=( 'nvim -nN --headless' 'vim -nN --not-a-term' )
 
     for program in "${programs[@]}"; do
