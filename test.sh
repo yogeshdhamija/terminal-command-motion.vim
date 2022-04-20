@@ -6,11 +6,16 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NO_COLOR='\033[0m'
 
-for test_folder in test/*; do
-    programs=( 'nvim -es --headless' 'vim -es -N' )
+# for test_folder in test/*; do
+for test_folder in test/*backwards; do
+    # programs=( 'nvim -N --headless' )   # Works totally
+    # programs=( 'vim -N --not-a-term' )   # Works locally
+    # programs=( 'vim -N --not-a-term' )   # Experiment
+    programs=( 'nvim -N --headless' 'vim -N --not-a-term' )
 
     for program in "${programs[@]}"; do
-        ${program} -u ./.vim/vimrc.local -c '' -s ./${test_folder}/when.vim ./${test_folder}/given.txt > /dev/null
+        rm "./${test_folder}/actual.txt" > /dev/null 2>&1
+        ${program} -u ./.vim/vimrc.local -c '' -s ./${test_folder}/when.vim ./${test_folder}/given.txt 
 
         program_name=$(echo "${program}" | awk '{print $1}')
 
