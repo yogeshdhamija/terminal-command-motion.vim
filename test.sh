@@ -8,10 +8,10 @@ NO_COLOR='\033[0m'
 
 for test_folder in test/*; do
 # for test_folder in test/*backwards; do
-    # programs=( 'nvim -N --headless' )   # Works totally
+    # programs=( 'nvim -nN --headless' )   # Works totally
     # programs=( 'vim -N --not-a-term' )   # Works locally
     # programs=( 'vim -N --not-a-term' )   # Experiment
-    programs=( 'nvim -N --headless' 'vim -N --not-a-term' )
+    programs=( 'nvim -nN --headless' 'vim -N --not-a-term' )
 
     for program in "${programs[@]}"; do
         rm "./${test_folder}/actual.txt" > /dev/null 2>&1
