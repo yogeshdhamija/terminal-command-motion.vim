@@ -7,7 +7,7 @@ GREEN='\033[0;32m'
 NO_COLOR='\033[0m'
 
 for test_folder in test/*; do
-    programs=( 'vim -es -N' 'nvim -es --headless' )
+    programs=( 'nvim -es --headless' 'vim -es -N' )
 
     for program in "${programs[@]}"; do
         ${program} -u ./.vim/vimrc.local -c '' -s ./${test_folder}/when.vim ./${test_folder}/given.txt > /dev/null
