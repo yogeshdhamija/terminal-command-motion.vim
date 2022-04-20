@@ -32,4 +32,4 @@ jobs:
           set +x
 
       - name: Test
-        run: ./test.sh
+        run: docker build . -t testing_terminal-command-motion.vim && docker run testing_terminal-command-motion.vim
