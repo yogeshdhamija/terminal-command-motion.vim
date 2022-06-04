@@ -1,0 +1,17 @@
+pre-prompt content
+prompt
+secondline $ command 1
+command output 1
+prompt
+secondline $ command 2
+command output 2
+command output 2
+prompt
+secondline $ command 3
+command output 3
+command output 3
+command output 3
+
+prompt
+secondline $ command 2
+
