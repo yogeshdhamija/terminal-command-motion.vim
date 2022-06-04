@@ -1,0 +1,13 @@
+pre-prompt content
+
+MARK2prompt $ command 1
+command output 1
+
+prompt $ command 2
+command output 2
+command output 2
+
+MARK1prompt $ command 3
+command output 3
+command output 3
+command output 3
