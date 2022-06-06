@@ -124,7 +124,7 @@ function! s:isOnPromptLine() abort
     let l:promptEndLine = search(@/, 'cenW')
 
     let l:isOnPrompt = 0
-    if(l:oldPosition[1] != 1 && l:oldPosition[1] >= l:promptStartPosition[1] && l:oldPosition[1] <= l:promptEndLine)
+    if(l:oldPosition[1] >= l:promptStartPosition[1] && l:oldPosition[1] <= l:promptEndLine)
         let l:isOnPrompt = 1
     endif
 
