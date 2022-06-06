@@ -16,9 +16,9 @@ for test_folder in test/*; do
         program_name=$(echo "${program}" | awk '{print $1}')
 
         if cmp --silent -- ./${test_folder}/expected.txt ./${test_folder}/actual.txt; then
-            echo -e "${GREEN}${test_folder} ${program_name} PASS${NO_COLOR}"
+            echo -e "${GREEN}PASS${NO_COLOR} ${program_name} ${test_folder}"
         else
-            echo -e "${RED}${test_folder} ${program_name} FAIL${NO_COLOR}"
+            echo -e "${RED}FAIL${NO_COLOR} ${program_name} ${test_folder}"
             echo ""
             echo "EXPECTED:"
             cat ./${test_folder}/expected.txt
