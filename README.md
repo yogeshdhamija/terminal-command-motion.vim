@@ -22,6 +22,12 @@ This plugin adds a "terminal command" motion to vim.
 
 See `:h terminal-command-motion.txt` for details (or check the `/doc` folder).
 
+**Required step** for this to work: you must set `g:terminal_command_motion_prompt_matcher`. See `:h g:terminal_command_motion_prompt_matcher`. Example:
+
+```
+let g:terminal_command_motion_prompt_matcher = 'prompt\$'
+```
+
 ## To Test
 Locally, run:
 ```
